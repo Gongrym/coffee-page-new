@@ -1,3 +1,9 @@
+/* ==============================
+   1. 공통 변수 및 기본 설정
+============================== */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+@import url("https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css");
+/* 글꼴과 디자인 공통 변수 */
 :root {
   --bg: #f6f0e6;
   --paper: #efe6d8;
@@ -6,70 +12,100 @@
   --line: #dccfbc;
   --accent: #b4533a;
   --dark: #3a2a22;
-  --serif: "Noto Serif KR", serif;
-  --sans: "Noto Sans KR", sans-serif;
+
+  /* 한글 주요 문구: 깔끔하고 힘 있는 인상 */
+  --korean-display: "Pretendard", sans-serif;
+
+  /* 한글 보조 문구: 단정하고 읽기 편한 인상 */
+  --korean-body: "SUIT", sans-serif;
+
+  /* 영문 장식 글꼴 */
   --english: "Cormorant Garamond", serif;
+
   --gutter: clamp(22px, 5vw, 76px);
 }
+
 * {
   box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 82px;
 }
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font: 14px/1.85 var(--sans);
+
+  /* 전체 기본 글꼴: 부수적인 글귀 */
+  font: 14px/1.85 var(--font-secondary);
 }
+
 a {
   color: inherit;
   text-decoration: none;
 }
+
 button {
   font: inherit;
   cursor: pointer;
 }
+
 img {
   display: block;
   max-width: 100%;
 }
+
 h1,
 h2,
 h3,
 p {
   margin: 0;
 }
+
+/* 주요 제목에는 첫 번째 한글 글꼴 사용 */
 h1,
 h2,
 h3 {
-  font-family: var(--serif);
+  font-family: var(--font-primary);
   font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 1.45;
 }
+
 .wrap {
   width: min(1440px, 100%);
   padding-inline: var(--gutter);
   margin-inline: auto;
 }
+
 .section {
   padding-block: clamp(76px, 10vw, 138px);
 }
+
+/* 작은 섹션 안내 문구 */
 .eyebrow {
-  font-size: 10px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
   letter-spacing: 0.17em;
   color: var(--accent);
   font-weight: 600;
 }
+
+/* 영문 장식 글꼴 */
 .english,
 .story-word,
 .product-info .english {
-  font-family: var(--english);
+  font-family: var(--font-english);
   font-style: italic;
 }
+
+/* ==============================
+   2. 헤더
+============================== */
+
 .header {
   height: 78px;
   padding-inline: var(--gutter);
@@ -82,36 +118,51 @@ h3 {
   top: 0;
   z-index: 10;
 }
+
+/* 주요 글귀: 브랜드 로고 */
 .logo {
   display: flex;
   align-items: baseline;
   gap: 9px;
-  font: 600 29px var(--serif);
+  font: 600 29px var(--font-primary);
   letter-spacing: -0.08em;
 }
+
+/* 부수적인 글귀: 로고 옆 작은 문구 */
 .logo span {
-  font: 12px var(--sans);
+  font: 13px var(--font-secondary);
   letter-spacing: 0.08em;
 }
+
+/* 상단 메뉴 */
 .nav {
   display: flex;
   align-items: center;
   gap: clamp(18px, 3vw, 42px);
-  font-size: 12px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
 }
+
 .nav a:hover,
 .footer-links a:hover {
   color: var(--accent);
 }
+
 .nav-cta {
   border-bottom: 1px solid var(--accent);
   padding-bottom: 4px;
 }
+
 .menu-toggle {
   display: none;
   background: none;
   border: 0;
 }
+
+/* ==============================
+   3. 메인 히어로 영역
+============================== */
+
 .hero {
   padding-top: clamp(30px, 5vw, 66px);
   display: grid;
@@ -119,27 +170,37 @@ h3 {
   gap: 18px 5%;
   align-items: stretch;
 }
+
 .hero-copy {
   padding: clamp(28px, 6vw, 85px) 0 15px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
 }
+
+/* 주요 글귀: 메인 제목 */
 .hero h1 {
+  font-family: var(--font-primary);
   font-size: clamp(44px, 6.3vw, 82px);
   margin: 22px 0;
 }
+
 .hero h1 em,
 .closing h2 em {
   font-weight: 400;
   color: var(--accent);
 }
+
+/* 부수적인 글귀: 메인 소개 문단 */
 .lead {
+  font-family: var(--font-secondary);
   color: var(--soft);
   line-height: 2;
   margin-bottom: 30px;
-  font-size: 13px;
+  font-size: 14px;
 }
+
+/* 공통 강조 버튼 */
 .button {
   display: inline-flex;
   align-items: center;
@@ -147,34 +208,43 @@ h3 {
   padding: 13px 19px;
   background: var(--accent);
   color: #fff8ef;
-  font-size: 12px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
   transition: background 0.2s;
 }
+
 .button:hover {
   background: #923c29;
 }
+
 .button span {
   font-size: 17px;
 }
+
+/* 영문 서명 장식 */
 .signature {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-top: auto;
   padding-top: 45px;
-  font: italic 20px var(--english);
+  font: bold 20px;
 }
+
 .signature i {
   width: 34px;
   height: 1px;
   background: var(--ink);
 }
+
+/* 대표 이미지 */
 .hero-visual {
   position: relative;
   min-height: 500px;
   background: linear-gradient(135deg, #d6c2a9, #a68a6d 55%, #66503f);
   overflow: hidden;
 }
+
 .hero-visual img {
   width: 100%;
   height: 100%;
@@ -182,17 +252,21 @@ h3 {
   inset: 0;
   object-fit: cover;
 }
-.hero-visual.no-image:after {
+
+/* 대표 이미지가 없을 때 표시되는 영문 장식 */
+.hero-visual.no-image::after {
   content: "morning ritual";
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
   color: #f6f0e6;
-  font: italic 45px var(--english);
+  font: italic 45px var(--font-english);
   opacity: 0.8;
 }
-.hero-visual:before {
+
+/* 이미지 아래쪽 그라데이션 */
+.hero-visual::before {
   content: "";
   position: absolute;
   inset: 45% 0 0;
@@ -200,21 +274,25 @@ h3 {
   z-index: 1;
   pointer-events: none;
 }
+
+/* 이미지 하단 영문 문구 */
 .image-note {
   position: absolute;
   bottom: 22px;
   left: 24px;
   color: #fff;
-  font: italic 15px var(--english);
+  font: italic 15px var(--font-english);
   letter-spacing: 0.08em;
   z-index: 2;
 }
+
+/* 이미지 위 원형 배지 */
 .seal {
   position: absolute;
   right: 20px;
   top: 20px;
-  width: 78px;
-  height: 78px;
+  width: 88px;
+  height: 88px;
   border-radius: 50%;
   background: var(--bg);
   display: flex;
@@ -225,48 +303,74 @@ h3 {
   transform: rotate(9deg);
   z-index: 2;
 }
+
 .seal small {
-  font-size: 8px;
-  letter-spacing: 0.1em;
+  font-family: var(--font-secondary);
+  font-size: 13px;
+  letter-spacing: 0.04em;
 }
+
 .seal strong {
-  font: italic 25px var(--english);
+  font: italic 25px var(--font-english);
 }
+
+/* 히어로 하단 안내 문구 */
 .hero-bottom {
   grid-column: 1/-1;
   display: flex;
   justify-content: space-between;
+  gap: 16px;
   color: var(--soft);
-  font-size: 9px;
-  letter-spacing: 0.12em;
+  font-family: var(--font-secondary);
+  font-size: 13px;
+  letter-spacing: 0.06em;
   padding: 2px 0 0;
 }
+
+/* ==============================
+   4. 브랜드 스토리
+============================== */
+
 .story {
   background: var(--paper);
 }
+
 .story-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10%;
   align-items: center;
 }
+
+/* 영문 장식 */
 .story-word {
   font-size: clamp(48px, 6.5vw, 85px);
   line-height: 0.98;
   color: var(--accent);
   margin-top: 35px;
 }
+
+/* 주요 글귀: 스토리 제목 */
 .story-copy h2 {
+  font-family: var(--font-primary);
   font-size: clamp(27px, 3.4vw, 43px);
   margin-bottom: 22px;
 }
+
+/* 부수적인 글귀: 스토리 본문 */
 .story-copy p {
+  font-family: var(--font-secondary);
   max-width: 510px;
   color: var(--soft);
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 12px;
   line-height: 2;
 }
+
+/* ==============================
+   5. 상품 소개
+============================== */
+
 .section-heading {
   display: flex;
   justify-content: space-between;
@@ -274,24 +378,35 @@ h3 {
   gap: 25px;
   margin-bottom: 40px;
 }
+
+/* 주요 글귀: 섹션 제목 */
 .section-heading h2 {
+  font-family: var(--font-primary);
   font-size: clamp(28px, 3.4vw, 42px);
   margin: 10px 0;
 }
+
+/* 부수적인 글귀: 섹션 설명 */
 .section-heading > div > p:last-child {
+  font-family: var(--font-secondary);
   color: var(--soft);
-  font-size: 12px;
+  font-size: 13px;
 }
+
 .section-heading .english {
   font-size: 26px;
   color: var(--accent);
   white-space: nowrap;
 }
+
+/* 상품 카드 목록 */
 .products {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
 }
+
+/* 상품 이미지 영역 */
 .product-art {
   aspect-ratio: 4/4.7;
   position: relative;
@@ -300,6 +415,7 @@ h3 {
   place-items: center;
   background: #d5b9a5;
 }
+
 .product-art img {
   position: absolute;
   width: 100%;
@@ -307,29 +423,39 @@ h3 {
   object-fit: cover;
   inset: 0;
 }
+
 .product-art.blend {
   background: #d5b9a5;
 }
+
 .product-art.sidamo {
   background: #d3d5c7;
 }
+
 .product-art.decaf {
   background: #d6c7af;
 }
+
+/* 이미지가 숨겨졌을 때 표시되는 영문 브랜드명 */
 .product-art:has(img[style*="display: none"])::after {
   content: "ondo";
-  font: italic 48px var(--english);
+  font: italic 48px var(--font-english);
   color: rgba(43, 29, 22, 0.45);
 }
+
+/* 상품 이미지 위 작은 태그 */
 .tag {
   position: absolute;
   left: 14px;
   top: 14px;
   background: var(--bg);
-  padding: 4px 8px;
-  font-size: 8px;
-  letter-spacing: 0.12em;
+  padding: 5px 9px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
+  letter-spacing: 0.04em;
 }
+
+/* 상품 추가 버튼 */
 .add {
   position: absolute;
   right: 14px;
@@ -345,41 +471,58 @@ h3 {
     transform 0.2s,
     background 0.2s;
 }
+
 .add:hover {
   background: var(--accent);
   color: white;
   transform: rotate(90deg);
 }
+
+/* 상품 정보 */
 .product-info {
   padding-top: 19px;
 }
+
+/* 주요 글귀: 한글 상품명 */
 .product-info h3 {
+  font-family: var(--font-primary);
   font-size: 20px;
   margin-top: 6px;
 }
+
+/* 영문 상품명 */
 .product-info .english {
   font-size: 22px;
   color: var(--accent);
   line-height: 1.4;
 }
+
+/* 부수적인 글귀: 맛과 향 설명 */
 .notes {
+  font-family: var(--font-secondary);
   color: var(--soft);
-  font-size: 11px;
+  font-size: 13px;
   margin: 12px 0 18px;
 }
+
+/* 가격 정보 영역 */
 .price {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid var(--line);
   padding-top: 12px;
-  font-size: 11px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
   color: var(--soft);
 }
+
 .price strong {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--ink);
 }
+
+/* 상품 목록 하단 안내 문구 */
 .coffee-foot {
   display: flex;
   justify-content: space-between;
@@ -388,11 +531,18 @@ h3 {
   margin-top: 42px;
   padding-top: 16px;
   color: var(--soft);
-  font-size: 10px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
 }
+
 .coffee-foot span {
-  letter-spacing: 0.12em;
+  letter-spacing: 0.06em;
 }
+
+/* ==============================
+   6. 원산지 소개
+============================== */
+
 .origin {
   min-height: 590px;
   position: relative;
@@ -402,6 +552,8 @@ h3 {
   color: #fff8ef;
   background: linear-gradient(135deg, #879078, #48523d);
 }
+
+/* 원산지 배경 이미지 및 오버레이 */
 .origin-image,
 .origin-overlay {
   position: absolute;
@@ -411,6 +563,7 @@ h3 {
   object-fit: cover;
   z-index: -2;
 }
+
 .origin-overlay {
   z-index: -1;
   background: linear-gradient(
@@ -419,6 +572,8 @@ h3 {
     rgba(25, 24, 18, 0.15)
   );
 }
+
+/* 원산지 콘텐츠 배치 */
 .origin-content {
   min-height: 590px;
   padding-block: 38px;
@@ -426,78 +581,125 @@ h3 {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .origin .eyebrow {
   color: #f3d6c5;
 }
+
 .origin-content > div {
   max-width: 610px;
 }
+
+/* 원산지 제목 위 작은 안내 문구 */
 .origin-kicker {
-  font-size: 10px;
-  letter-spacing: 0.18em;
+  font-family: var(--font-secondary);
+  font-size: 13px;
+  letter-spacing: 0.12em;
   margin-bottom: 18px;
 }
+
+/* 주요 글귀: 원산지 제목 */
 .origin h2 {
+  font-family: var(--font-primary);
   font-size: clamp(32px, 4.5vw, 56px);
   margin-bottom: 20px;
 }
+
+/* 부수적인 글귀: 원산지 설명 */
 .origin-content > div > p:not(.origin-kicker) {
-  font-size: 12px;
+  font-family: var(--font-secondary);
+  font-size: 14px;
   line-height: 2;
   color: #f1e8dc;
 }
+
+/* 원산지 링크 */
 .light-link {
   display: inline-block;
   margin-top: 27px;
   border-bottom: 1px solid #fff;
   padding-bottom: 5px;
-  font-size: 12px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
 }
+
+/* 원산지 영문 장식 */
 .origin-caption {
-  font: italic 19px var(--english);
+  font: italic 19px var(--font-english);
   text-align: right;
 }
+
+/* ==============================
+   7. 마지막 구매 유도 영역
+============================== */
+
 .closing {
   text-align: center;
 }
+
+/* 주요 글귀: 마지막 섹션 제목 */
 .closing h2 {
+  font-family: var(--font-primary);
   font-size: clamp(35px, 5.5vw, 65px);
   margin: 20px 0 30px;
 }
+
 .closing .button {
   margin-inline: auto;
 }
+
+/* ==============================
+   8. 푸터
+============================== */
+
 .footer {
   background: var(--dark);
   color: #f3eadb;
   padding: 38px 0 24px;
 }
+
 .footer-inner {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
   align-items: center;
   gap: 18px;
 }
+
 .footer-logo {
   width: max-content;
 }
+
+/* 부수적인 글귀: 푸터 설명 */
 .footer-inner > p {
-  font-size: 11px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
   color: #d1c4b6;
 }
+
+/* 푸터 링크 */
 .footer-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 22px;
-  font-size: 11px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
 }
+
+/* 저작권 및 기타 안내 문구 */
 .footer-inner > small {
   grid-column: 1/-1;
   border-top: 1px solid #ffffff2c;
   padding-top: 17px;
   color: #c9bbae;
-  font-size: 9px;
-  letter-spacing: 0.08em;
+  font-family: var(--font-secondary);
+  font-size: 13px;
+  letter-spacing: 0.04em;
 }
+
+/* ==============================
+   9. 토스트 알림
+============================== */
+
 .toast {
   position: fixed;
   left: 50%;
@@ -506,7 +708,8 @@ h3 {
   padding: 12px 20px;
   background: var(--dark);
   color: white;
-  font-size: 12px;
+  font-family: var(--font-secondary);
+  font-size: 13px;
   opacity: 0;
   pointer-events: none;
   transition: 0.2s;
@@ -514,17 +717,25 @@ h3 {
   max-width: calc(100vw - 32px);
   text-align: center;
 }
+
 .toast.show {
   opacity: 1;
   transform: translate(-50%, 0);
 }
+
+/* ==============================
+   10. 모바일 반응형
+============================== */
+
 @media (max-width: 760px) {
   html {
     scroll-padding-top: 70px;
   }
+
   .header {
     height: 70px;
   }
+
   .menu-toggle {
     display: flex;
     width: 34px;
@@ -534,12 +745,14 @@ h3 {
     gap: 6px;
     padding: 5px;
   }
+
   .menu-toggle span {
     display: block;
     width: 23px;
     height: 1px;
     background: var(--ink);
   }
+
   .nav {
     display: none;
     position: absolute;
@@ -553,107 +766,393 @@ h3 {
     flex-direction: column;
     gap: 18px;
   }
+
   .nav.open {
     display: flex;
   }
+
   .nav-cta {
     align-self: flex-start;
     margin-top: 5px;
   }
+
   .hero {
     grid-template-columns: 1fr;
     gap: 0;
     padding-top: 0;
   }
+
   .hero-visual {
     grid-row: 1;
     min-height: 0;
     aspect-ratio: 4/4.1;
     margin-inline: calc(var(--gutter) * -0);
   }
+
   .hero-copy {
     padding: 37px 0 28px;
   }
+
   .hero h1 {
-    font-size: clamp(42px, 11vw, 62px);
-    margin: 14px 0;
+    font-family: "Noto Serif KR", serif;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    line-height: 1.35;
+    letter-spacing: -0.055em;
+    color: #2b1d16;
+    text-shadow: none;
+    -webkit-font-smoothing: auto;
   }
+
   .lead {
     margin-bottom: 23px;
   }
+
   .signature {
     margin-top: 0;
     padding-top: 28px;
   }
+
   .hero-bottom {
     padding-bottom: 5px;
-    font-size: 8px;
+    font-size: 13px;
+    flex-wrap: wrap;
   }
+
   .story-grid {
     grid-template-columns: 1fr;
     gap: 38px;
   }
+
   .story-word {
     font-size: 64px;
     margin-top: 20px;
   }
+
   .section-heading {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
     margin-bottom: 28px;
   }
+
   .section-heading .english {
     font-size: 23px;
   }
+
   .products {
     grid-template-columns: 1fr;
     gap: 37px;
   }
+
   .product-art {
     aspect-ratio: 4/3.8;
   }
+
   .product-info h3 {
     font-size: 21px;
   }
+
   .coffee-foot {
     flex-direction: column;
     gap: 5px;
     margin-top: 32px;
   }
+
   .origin,
   .origin-content {
     min-height: 540px;
   }
+
   .origin h2 {
     font-size: clamp(30px, 8vw, 42px);
   }
+
   .origin-caption {
     font-size: 16px;
   }
+
   .footer-inner {
     grid-template-columns: 1fr;
     gap: 13px;
   }
+
   .footer-inner > small {
     grid-column: auto;
     margin-top: 10px;
   }
+
   .footer-links {
     flex-wrap: wrap;
   }
+
   .closing h2 {
     font-size: 38px;
   }
 }
+
+/* ==============================
+   11. 접근성: 애니메이션 최소화
+============================== */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+
   *,
   *::before,
   *::after {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+/* ========================================
+   ONDO Typography Refresh
+   한글 글꼴 정리 / 최소 글자 크기 12px
+   ======================================== */
+
+/* 기본 본문: 한글 보조 글꼴 */
+body {
+  font-family: var(--korean-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: -0.025em;
+}
+
+/* 폼 요소도 본문 글꼴을 따라가도록 설정 */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 주요 제목: Pretendard로 깔끔하고 선명하게 */
+h1,
+h2,
+h3 {
+  font-family: var(--korean-display);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.35;
+}
+
+/* 메인 카피 */
+.hero h1 {
+  font-size: clamp(44px, 6.3vw, 82px);
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  line-height: 1.2;
+}
+
+/* 브랜드 소개 제목 */
+.story-copy h2,
+.origin h2,
+.closing h2 {
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.4;
+}
+
+/* 상품명 */
+.product-info h3 {
+  font-family: var(--korean-display);
+  font-size: 21px;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+
+/* 주요 문구 */
+.lead,
+.story-copy p,
+.section-heading > div > p:last-child,
+.origin-content > div > p:not(.origin-kicker) {
+  font-family: var(--korean-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.9;
+  letter-spacing: -0.025em;
+}
+
+/* 보조 정보: 작게 줄이지 않고 굵기와 색으로 구분 */
+.eyebrow,
+.nav,
+.nav-cta,
+.button,
+.image-note,
+.hero-bottom,
+.tag,
+.notes,
+.price,
+.coffee-foot,
+.origin-kicker,
+.light-link,
+.footer-inner > p,
+.footer-links,
+.footer-inner > small,
+.logo span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 글자 크기 12px 미만 방지 */
+.eyebrow {
+  letter-spacing: 0.1em;
+  font-weight: 650;
+}
+
+.hero-bottom {
+  letter-spacing: 0.08em;
+}
+
+.tag {
+  letter-spacing: 0.08em;
+  padding: 5px 9px;
+}
+
+.notes {
+  line-height: 1.7;
+  letter-spacing: -0.02em;
+}
+
+.price {
+  line-height: 1.6;
+}
+
+.price strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.coffee-foot {
+  line-height: 1.8;
+}
+
+.origin-kicker {
+  letter-spacing: 0.12em;
+}
+
+.footer-inner > small {
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+}
+
+/* 로고: 굵고 간결하게 */
+.logo {
+  font-family: var(--korean-display);
+  font-size: 29px;
+  font-weight: 700;
+  letter-spacing: -0.07em;
+}
+
+.logo span {
+  font-family: var(--korean-body);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* 영문 장식 글꼴은 유지 */
+.english,
+.story-word,
+.product-info .english,
+.signature,
+.image-note,
+.origin-caption,
+.seal strong,
+.hero-visual.no-image:after,
+.product-art:has(img[style*="display: none"])::after {
+  font-family: var(--english);
+}
+
+/* 영문은 얇은 느낌을 줄이되 우아한 분위기는 유지 */
+.signature,
+.image-note,
+.origin-caption,
+.hero-visual.no-image:after,
+.product-art:has(img[style*="display: none"])::after {
+  font-weight: 500;
+}
+
+/* 작은 영문 메타 정보도 읽기 편하게 */
+.hero-bottom,
+.tag,
+.coffee-foot,
+.footer-inner > small {
+  font-family: var(--korean-body);
+}
+
+/* 버튼은 글자가 작고 가늘어 보이지 않게 */
+.button {
+  font-family: var(--korean-display);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+.button span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* 상품 추가 버튼 */
+.add {
+  font-family: var(--korean-display);
+  font-weight: 500;
+}
+
+/* 가격 및 상품 정보 */
+.product-info .english {
+  font-weight: 500;
+}
+
+.price strong {
+  font-weight: 700;
+}
+
+/* 모바일에서도 글씨를 지나치게 작게 만들지 않기 */
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(42px, 11vw, 62px);
+    line-height: 1.22;
+  }
+
+  .story-word {
+    font-size: 64px;
+  }
+
+  .section-heading .english {
+    font-size: 23px;
+  }
+
+  .product-info h3 {
+    font-size: 21px;
+  }
+
+  .origin-caption {
+    font-size: 16px;
+  }
+
+  .closing h2 {
+    font-size: 38px;
+  }
+
+  .nav,
+  .nav-cta,
+  .button,
+  .eyebrow,
+  .tag,
+  .notes,
+  .price,
+  .coffee-foot,
+  .footer-inner > p,
+  .footer-links,
+  .footer-inner > small,
+  .hero-bottom,
+  .origin-kicker,
+  .light-link,
+  .logo span {
+    font-size: 12px;
   }
 }
