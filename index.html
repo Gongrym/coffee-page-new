@@ -1,3 +1,8 @@
+<!-- 설명하는 주석은 코드의 바로 윗줄에 붙여서 작성-->
+<!-- 모르는것 주석은 코드 아랫줄에 붙여서 작성-->
+<!-- 위에 해놓은 설명에 확신이 없거나 확실하지 않을때, 아래쪽의 질문과 의문으로 문장이 이어질
+  수 있음 -->
+
 <!doctype html>
 <html lang="ko">
   <head>
@@ -9,18 +14,34 @@
       content="매일의 순간에 천천히 스며드는 스페셜티 커피, 온도(ondo)."
     />
     <title>ondo — 하루의 온도를 담은 커피</title>
+
+    <!-- 구글 폰트 불러오기 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- style.css에 연결하기 -->
     <link rel="stylesheet" href="style.css" />
+
+    <!-- script.js에 연결하기 -->
+    <!-- defer를 뒤에 적는것에 대해서는 공부해야함 -->
     <script src="script.js" defer></script>
+    <!--  -->
   </head>
   <body id="top">
+    <!-- 헤더 태그 열기 -->
     <header class="header">
+      <!-- 헤더는 하나뿐인데 왜 헤더에도 header라는 클래스를 설정해야했나? -->
+
+      <!-- 좌측상단 온도 로고 -->
       <a class="logo" href="#top" aria-label="ondo 홈">ondo<span>온도</span></a>
+      <!-- aria-label이 뭐지? -->
+      <!-- #top을 걸어두니까 클릭했을때 꼭대기로 올라가는데, 이건 js에서 구현된것? -->
+
+      <!-- 햄버거 버튼이라는데.. 창을 늘렸을땐 안보이고 줄였을땐 보인단다 -->
       <button
         class="menu-toggle"
         aria-expanded="false"
@@ -29,29 +50,52 @@
       >
         <span></span><span></span>
       </button>
+      <!-- 그런데 그 이유를 모르겠다. 완전히 전부 배워야함 -->
+
+      <!-- 우측 상단 메뉴들 -->
       <nav class="nav" id="nav">
         <a href="#story">브랜드</a><a href="#coffee">커피</a
         ><a href="#origin">산지 이야기</a>
         <a class="nav-cta" href="#coffee">원두 만나보기 ↗</a>
       </nav>
+      <!-- nav가 뭡니까? -->
+      <!-- 위에서 한 질문처럼 #을 달아둔건 js에서 구현한 기능과 연결되는것인가? -->
+      <!-- 얘네는 어떻게 우측 상단에 붙을 수 있지? css에서 구현한다는거 아는데, css에서 정확하
+       어떻게 적어야하는지 모름 -->
     </header>
 
     <main>
+      <!-- 각 페이지를 나눠주는 섹션 태그 -->
       <section class="hero wrap">
+        <!-- 맞습니까? -->
+
         <div class="hero-copy">
+          <!-- hero가 뭐임? 문법요소가 아니라 그냥 클래스 이름으로 쓰였는데, hero는 뭘
+           의미하는지 키워드의 뜻을 모름 -->
+
           <p class="eyebrow">SPECIALTY COFFEE, ONDO</p>
+          <!-- p는 뭐임? -->
+
           <h1>하루의 온도를<br />담은 <em>커피.</em></h1>
+          <!-- h1은 기본적으로 p보다 큰 폰트인가? -->
+
           <p class="lead">
             바쁜 하루의 틈, 잠깐 멈춰 나를 돌보는 시간.<br />온도는 당신의
             일상에 오래 남는 한 잔을 만듭니다.
           </p>
+
           <a class="button" href="#coffee"
-            >온도의 커피 만나보기 <span>↗</span></a
+            >온도의 커피 만나보기 <span>↗</span>
+            <!-- 왜 span을 하고 화살표를 쓰는걸까? 그냥 띄어쓰기하면 되지않나? --></a
           >
+          <!-- 이건 button이 아니라 왜 a로 쓴거임? 둘 차이가? -->
+
           <p class="signature"><i></i> 천천히, 좋은 것을 오래.</p>
         </div>
+        <!-- div가 참 많이 쓰이는데 뭐임? 그냥 요소를 나누는데 쓰는 가장 대표적인건가? -->
+
+        <!-- 우측에 붙은 이미지 -->
         <div class="hero-visual">
-          <!-- 이미지 교체 위치: images/Morning coffee photograph.png -->
           <img
             src="images/Editorial photograph (5).png"
             alt="따뜻한 아침 햇살 아래 놓인 커피"
@@ -60,22 +104,35 @@
               this.parentElement.classList.add('no-image');
             "
           />
+          <!-- 이까지가 이미지태그 같은데 뭐가 이렇게 긴지모르겠음. 설명좀 -->
+
+          <!-- 이미지 아래에 적힌 글귀인듯 -->
           <span class="image-note">A SLOW MORNING, A GOOD CUP.</span>
+
+          <!-- 이거 이미지 우측상단에 스티커같은데 -->
           <div class="seal">
             <small>TAKE A</small><strong>slow</strong><small>moment</small>
           </div>
+          <!-- 이건 첨본다 -->
         </div>
+        <!-- 이 세션 가장 아랫쪽의 글귀 -->
         <div class="hero-bottom">
           <span>ROASTED WITH CARE</span><span>37° 33′ N · SEOUL, KOREA</span>
         </div>
+        <!-- 왼쪽 스팬과 오른쪽 스팬이 각각 좌우로 벌어져 나뉘어있는데, 어떻게 한거지?
+         클래스명이 따로 지정된것도 아닌데 css에서 어떻게 위치를 좌우로 나눴을까? -->
       </section>
 
+      <!-- 다음 섹션. id를 보니 커피에 대한 이야기인듯 -->
       <section class="story section" id="story">
         <div class="wrap story-grid">
           <div>
             <p class="eyebrow">OUR PHILOSOPHY</p>
             <p class="story-word">Good coffee,<br /><em>good day.</em></p>
+            <!-- em이 뭐임? -->
           </div>
+
+          <!-- 섹션 우측의 글귀 -->
           <div class="story-copy">
             <h2>좋은 커피는<br />하루의 결을 바꿉니다.</h2>
             <p>
@@ -83,6 +140,7 @@
               개성이 또렷한 원두를 신중하게 고르고, 재료가 가진 좋은 맛이
               자연스럽게 드러나도록 로스팅합니다.
             </p>
+
             <p>
               서두르지 않고, 과하게 꾸미지 않고. 당신의 하루에 꼭 맞는 온도로
               전합니다.
@@ -91,6 +149,7 @@
         </div>
       </section>
 
+      <!-- 커피 목록 쭈루룩 있고 고르는 섹션 -->
       <section class="coffee section wrap" id="coffee">
         <div class="section-heading">
           <div>
