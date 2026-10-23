@@ -1,72 +1,249 @@
-from pathlib import Path
-import re
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f0e6" />
+    <meta
+      name="description"
+      content="매일의 순간에 천천히 스며드는 스페셜티 커피, 온도(ondo)."
+    />
+    <title>ondo — 하루의 온도를 담은 커피</title>
 
-source = Path('/mnt/data/붙여넣은 텍스트(1)(1).txt').read_text(encoding='utf-8')
-# 기존의 질문·메모·임시 주석을 모두 제거하고, 코드 자체는 유지합니다.
-html = re.sub(r'<!--.*?-->', '', source, flags=re.S)
-html = re.sub(r'\n[ \t]*\n(?:[ \t]*\n)+', '\n\n', html).strip()
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-comments = {
-'<!doctype html>': '브라우저에 이 문서가 HTML5 형식임을 알린다.',
-'<html lang="ko">': 'HTML 문서의 시작이다. lang="ko"는 문서의 주 언어가 한국어라는 뜻이다.',
-'  <head>': 'head에는 화면에 직접 표시할 본문이 아니라 문서 설정과 외부 파일 연결 정보를 넣는다.',
-'    <meta charset="UTF-8" />': 'UTF-8 문자 인코딩을 사용해 한글 등의 문자가 깨지지 않도록 한다.',
-'    <meta name="viewport" content="width=device-width, initial-scale=1.0" />': '모바일 화면에서도 기기 너비를 기준으로 반응형 레이아웃이 적용되도록 설정한다.',
-'    <meta name="theme-color" content="#f6f0e6" />': '지원하는 브라우저에서 주소창 등 브라우저 UI의 테마 색상으로 사용할 값을 지정한다.',
-'    <meta\n      name="description"': '검색 결과 등의 페이지 설명에 활용될 수 있는 사이트 소개 문구를 지정한다.',
-'    <title>': '브라우저 탭과 즐겨찾기 등에 표시되는 페이지 제목이다.',
-'    <link rel="preconnect" href="https://fonts.googleapis.com" />': '구글 폰트 서버에 미리 연결해 폰트 로딩을 준비한다.',
-'    <link\n      href="https://fonts.googleapis.com/css2?': '구글 폰트에서 사용할 글꼴과 굵기를 불러온다.',
-'    <link rel="stylesheet" href="style.css" />': '별도의 CSS 파일을 연결한다. 화면의 색상, 크기, 배치 등은 주로 이 파일에서 결정된다.',
-'    <script src="script.js" defer></script>': 'JavaScript 파일을 연결한다. defer는 HTML 해석이 끝난 뒤 스크립트를 실행하도록 한다.',
-'  <body id="top">': 'body는 실제 화면에 표시되는 내용이다. top이라는 id는 맨 위로 이동하는 링크의 목적지가 된다.',
-'    <header class="header">': 'header는 페이지 상단 영역을 나타내는 의미 있는 태그다. class="header"는 CSS에서 이 영역을 선택하기 위한 별도의 이름이다.',
-'      <a class="logo"': 'a는 이동용 링크다. href="#top"은 같은 문서의 id="top"으로 이동하며 JavaScript 없이도 작동한다. aria-label은 보조 기술에 전달할 링크 이름이다.',
-'      <button\n        class="menu-toggle"': '모바일용 메뉴 버튼이다. aria-expanded는 메뉴가 펼쳐졌는지, aria-controls는 어떤 요소를 제어하는지 나타낸다. 실제 열고 닫기는 CSS와 JavaScript가 담당한다.',
-'      <nav class="nav" id="nav">': 'nav는 주요 탐색 링크를 묶는 의미 있는 태그다. 각 href="#이름"은 해당 id가 붙은 section으로 이동한다. 우측 배치는 CSS가 담당한다.',
-'    <main>': 'main은 페이지에서 핵심이 되는 본문을 감싸는 의미 있는 태그다.',
-'      <section class="hero wrap">': '첫 화면의 대표 소개 영역이다. hero는 HTML 문법이 아니라 첫 화면의 큰 홍보 영역에 관례적으로 붙이는 클래스명이다. wrap은 공통 가로 폭을 조절하는 용도다.',
-'        <div class="hero-copy">': 'div는 별도 의미 없이 요소를 묶는 상자다. 이 상자는 첫 화면의 문구들을 한 그룹으로 묶는다.',
-'          <p class="eyebrow">': 'p는 문단 태그다. eyebrow는 제목 위에 놓는 작은 안내 문구에 붙인 클래스명이다.',
-'          <h1>': 'h1은 페이지의 가장 중요한 제목이다. 기본 스타일상 보통 p보다 크지만 실제 크기는 CSS에서 바꿀 수 있다. br은 줄바꿈, em은 강조를 뜻한다.',
-'          <a class="button"': '다른 위치로 이동시키는 기능이므로 button 대신 a를 사용한다. class="button"은 링크를 버튼처럼 꾸미기 위한 이름이다. span은 화살표만 따로 스타일링할 수 있게 묶는다.',
-'          <p class="signature">': '비어 있는 i 요소는 여기서 CSS로 작은 장식 모양을 만들기 위한 요소로 쓰인다.',
-'        <div class="hero-visual">': '대표 이미지와 이미지 위의 장식 문구를 한 영역으로 묶는다.',
-'          <img\n            src="images/Editorial photograph (5).png"': 'img의 src는 이미지 경로, alt는 이미지의 대체 설명이다. onerror는 로딩에 실패했을 때 이미지를 숨기고 부모 요소에 no-image 클래스를 추가하는 인라인 JavaScript다.',
-'          <span class="image-note">': 'span은 문장 안의 일부나 짧은 문구를 묶는 인라인 요소다. 여기서는 이미지 주변의 작은 문구에 사용한다.',
-'          <div class="seal">': '장식용 스티커 영역이다. small은 부가적인 작은 글씨, strong은 중요성을 강조하는 글씨이며 배치와 모양은 CSS가 정한다.',
-'        <div class="hero-bottom">': '하단의 두 span을 묶는다. 별도 클래스가 없어도 CSS에서 .hero-bottom과 그 자식 span을 선택해 좌우로 배치할 수 있다.',
-'      <section class="story section" id="story">': '브랜드 소개 구역이다. id="story"는 상단의 href="#story" 링크가 이동할 목적지다. 하나의 요소에 클래스를 여러 개 붙일 수 있다.',
-'        <div class="wrap story-grid">': '공통 폭 제한인 wrap과 두 영역의 배치를 담당하는 story-grid를 함께 적용한다.',
-'            <p class="story-word">': 'em은 문구의 의미상 강조를 나타내며 브라우저 기본 스타일은 보통 기울임꼴이다. CSS로 변경할 수 있다.',
-'      <section class="coffee section wrap" id="coffee">': '상품 목록 구역이다. section은 주제별 콘텐츠를 나누며 id="coffee"는 페이지 내부 이동의 목적지다.',
-'        <div class="section-heading">': '상품 구역의 제목과 보조 문구를 묶어 CSS에서 한 덩어리로 배치한다.',
-'        <div class="products">': '세 개의 상품 article을 묶는 목록 영역이다. 그리드의 열 수와 간격은 CSS에서 정한다.',
-'          <article class="product">': 'article은 하나만 떼어 놓아도 의미가 통하는 독립 콘텐츠에 적합하다. 여기서는 개별 상품 카드다.',
-'            <div class="product-art blend">': '상품 이미지, 상태 태그, 담기 버튼을 묶는다. blend는 첫 번째 상품만 구분해 스타일링하기 위한 클래스다.',
-'              <img\n                src="images/Coffee packaging (1) (1).png"': 'loading="lazy"는 이미지가 화면 가까이에 올 때 로딩하도록 요청한다. onerror는 이미지 로딩 실패 시 이미지를 숨긴다.',
-'              <span class="tag">BEST SELLER': '상품 상태를 표시하는 짧은 태그다. span은 기본적으로 내용 너비만 차지하지만 CSS로 모양을 바꿀 수 있다.',
-'              ><button\n                class="add"': 'button은 페이지 안에서 동작을 실행할 때 사용한다. data-product는 JavaScript가 어떤 상품 버튼인지 알아볼 수 있도록 저장한 사용자 정의 데이터다.',
-'            <div class="product-info">': '상품명, 맛 설명, 중량, 가격을 하나의 정보 영역으로 묶는다.',
-'              <div class="price">': '중량과 가격을 같은 줄에 배치하기 위한 묶음이다. 실제 좌우 배치는 CSS에서 설정한다.',
-'            <div class="product-art sidamo">': '두 번째 상품의 이미지·태그·버튼 영역이다. sidamo 클래스로 상품별 디자인을 구분한다.',
-'              <img\n                src="images/Coffee packaging (2) (1).png"': '두 번째 상품 이미지를 불러온다. alt는 이미지를 볼 수 없을 때 전달할 설명이다.',
-'            <div class="product-art decaf">': '세 번째 상품의 이미지·태그·버튼 영역이다. decaf 클래스로 상품별 디자인을 구분한다.',
-'              <img\n                src="images/Coffee packaging (3).png"': '세 번째 상품 이미지를 불러온다. loading="lazy"는 초기 로딩 부담을 줄이는 데 도움이 된다.',
-'        <p class="coffee-foot">': '상품 목록 아래의 안내 문구다. 안쪽 span을 사용하면 영문 문구만 별도로 꾸밀 수 있다.',
-'      <section class="origin" id="origin">': '원두 산지 소개 구역이다. 상단 메뉴의 href="#origin"이 이 위치로 이동한다.',
-'        <img\n          class="origin-image"': '산지 배경 이미지다. 별도의 클래스를 통해 CSS에서 크기와 배치 방식을 조절한다.',
-'        <div class="origin-overlay"></div>': '이미지 위에 색이나 어두운 막을 덧씌우기 위한 빈 요소다. 실제 시각 효과는 CSS에서 만든다.',
-'        <div class="origin-content wrap">': '산지 이미지 위에 올라갈 글들을 묶는다. 내부 div는 제목과 설명, 링크를 하나의 그룹으로 배치하기 위한 것이다.',
-'      <section class="closing section wrap">': '페이지 본문 마지막의 마무리 문구와 상품 이동 링크를 담은 구역이다.',
-'    <footer class="footer">': 'footer는 페이지 하단의 부가 정보 영역이다. 브랜드, 하단 링크, 저작권 문구를 담는다.',
-'        <div class="footer-links">': '하단 탐색 링크를 하나로 묶어 간격과 정렬을 CSS로 조절한다.',
-'    <div class="toast" role="status" aria-live="polite"></div>': 'JavaScript가 상품 담기 등의 결과를 짧게 알려줄 때 사용하는 알림 영역이다. role과 aria-live는 알림 내용을 보조 기술에 전달하도록 돕는다.'
-}
-# 동일한 태그가 반복되는 곳은 해당 위치의 첫 등장에만 설명을 넣습니다.
-for target, explanation in comments.items():
-    if target in html:
-        html = html.replace(target, '<!-- ' + explanation + ' -->\n' + target, 1)
-out = Path('/mnt/data/ondo_설명주석_정리.html')
-out.write_text(html + '\n', encoding='utf-8')
-print(f'완료: {out.name} / 설명 주석 {len(re.findall(r"<!--", html))}개 / {len(html.splitlines())}줄')
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body id="top">
+    <header class="header">
+      <a class="logo" href="#top" aria-label="ondo 홈">ondo<span>온도</span></a>
+
+      <button
+        class="menu-toggle"
+        aria-expanded="false"
+        aria-controls="nav"
+        aria-label="메뉴 열기"
+      >
+        <span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="#story">브랜드</a><a href="#coffee">커피</a
+        ><a href="#origin">산지 이야기</a>
+        <a class="nav-cta" href="#coffee">원두 만나보기 ↗</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">SPECIALTY COFFEE, ONDO</p>
+
+          <h1>하루의 온도를<br />담은 <em>커피.</em></h1>
+
+          <p class="lead">
+            바쁜 하루의 틈, 잠깐 멈춰 나를 돌보는 시간.<br />온도는 당신의
+            일상에 오래 남는 한 잔을 만듭니다.
+          </p>
+
+          <a class="button" href="#coffee"
+            >온도의 커피 만나보기 <span>↗</span></a
+          >
+
+          <p class="signature"><i></i> 천천히, 좋은 것을 오래.</p>
+        </div>
+
+        <div class="hero-visual">
+          <img
+            src="images/Editorial photograph (5).png"
+            alt="따뜻한 아침 햇살 아래 놓인 커피"
+            onerror="
+              this.style.display = 'none';
+              this.parentElement.classList.add('no-image');
+            "
+          />
+
+          <span class="image-note">A SLOW MORNING, A GOOD CUP.</span>
+
+          <div class="seal">
+            <small>TAKE A</small><strong>slow</strong><small>moment</small>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <span>ROASTED WITH CARE</span><span>37° 33′ N · SEOUL, KOREA</span>
+        </div>
+      </section>
+
+      <section class="story section" id="story">
+        <div class="wrap story-grid">
+          <div>
+            <p class="eyebrow">OUR PHILOSOPHY</p>
+            <p class="story-word">Good coffee,<br /><em>good day.</em></p>
+          </div>
+
+          <div class="story-copy">
+            <h2>좋은 커피는<br />하루의 결을 바꿉니다.</h2>
+            <p>
+              온도는 화려한 순간보다 매일 반복되는 작은 순간을 믿습니다. 산지의
+              개성이 또렷한 원두를 신중하게 고르고, 재료가 가진 좋은 맛이
+              자연스럽게 드러나도록 로스팅합니다.
+            </p>
+
+            <p>
+              서두르지 않고, 과하게 꾸미지 않고. 당신의 하루에 꼭 맞는 온도로
+              전합니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="coffee section wrap" id="coffee">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">THE COLLECTION</p>
+            <h2>오늘의 커피를 골라보세요.</h2>
+            <p>취향과 순간에 어울리는 세 가지 선택.</p>
+          </div>
+          <span class="english">Find your tone.</span>
+        </div>
+
+        <div class="products">
+          <article class="product">
+            <div class="product-art blend">
+              <img
+                src="images/Coffee packaging (1) (1).png"
+                alt="온도 블렌드 원두 패키지"
+                loading="lazy"
+                onerror="this.style.display = 'none'"
+              />
+              <span class="tag">BEST SELLER</span
+              ><button
+                class="add"
+                data-product="온도 블렌드"
+                aria-label="온도 블렌드 담기"
+              >
+                +
+              </button>
+            </div>
+            <div class="product-info">
+              <p class="eyebrow">01 / EVERYDAY</p>
+              <h3>온도 블렌드</h3>
+              <p class="english">The Everyday Blend</p>
+              <p class="notes">밀크 초콜릿 · 구운 아몬드 · 브라운 슈가</p>
+              <div class="price"><span>200g</span><strong>₩14,000</strong></div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-art sidamo">
+              <img
+                src="images/Coffee packaging (2) (1).png"
+                alt="에티오피아 시다모 원두 패키지"
+                loading="lazy"
+                onerror="this.style.display = 'none'"
+              />
+              <span class="tag">SINGLE ORIGIN</span
+              ><button
+                class="add"
+                data-product="에티오피아 시다모"
+                aria-label="에티오피아 시다모 담기"
+              >
+                +
+              </button>
+            </div>
+            <div class="product-info">
+              <p class="eyebrow">02 / BRIGHT</p>
+              <h3>에티오피아 시다모</h3>
+              <p class="english">Ethiopia Sidamo</p>
+              <p class="notes">베르가못 · 복숭아 · 은은한 꽃 향</p>
+              <div class="price"><span>200g</span><strong>₩16,000</strong></div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-art decaf">
+              <img
+                src="images/Coffee packaging (3).png"
+                alt="밤의 온도 디카페인 원두 패키지"
+                loading="lazy"
+                onerror="this.style.display = 'none'"
+              />
+              <span class="tag">DECAF</span
+              ><button
+                class="add"
+                data-product="밤의 온도 디카페인"
+                aria-label="밤의 온도 디카페인 담기"
+              >
+                +
+              </button>
+            </div>
+            <div class="product-info">
+              <p class="eyebrow">03 / GENTLE</p>
+              <h3>밤의 온도</h3>
+              <p class="english">The Decaf</p>
+              <p class="notes">캐러멜 · 코코아 · 부드러운 여운</p>
+              <div class="price"><span>200g</span><strong>₩15,000</strong></div>
+            </div>
+          </article>
+        </div>
+
+        <p class="coffee-foot">
+          모든 원두는 주문 후 신선하게 준비합니다.
+          <span>GOOD THINGS TAKE TIME.</span>
+        </p>
+      </section>
+
+      <section class="origin" id="origin">
+        <img
+          class="origin-image"
+          src="images/Coffee landscape.png"
+          alt="커피가 자라는 에티오피아의 산지 풍경"
+          loading="lazy"
+          onerror="this.style.display = 'none'"
+        />
+        <div class="origin-overlay"></div>
+        <div class="origin-content wrap">
+          <p class="eyebrow">FROM THE ORIGIN</p>
+          <div>
+            <p class="origin-kicker">ETHIOPIA · SIDAMA</p>
+            <h2>한 잔의 시작에는<br />한 곳의 풍경이 있습니다.</h2>
+            <p>
+              높은 산과 서늘한 아침, 천천히 익어가는 커피 체리.<br />온도는
+              원두가 태어난 곳의 이야기를 한 잔에 담습니다.
+            </p>
+            <a href="#coffee" class="light-link">산지의 향을 만나보세요 ↗</a>
+          </div>
+          <span class="origin-caption"
+            >Grown with nature. Roasted with care.</span
+          >
+        </div>
+      </section>
+
+      <section class="closing section wrap">
+        <p class="eyebrow">MAKE ROOM FOR A MOMENT</p>
+        <h2>오늘도 당신에게<br /><em>좋은 온도</em> 가 머물기를.</h2>
+        <a class="button" href="#coffee">나의 커피 고르기 <span>↗</span></a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <a class="logo footer-logo" href="#top">ondo<span>온도</span></a>
+        <p>천천히, 좋은 것을 오래.</p>
+        <div class="footer-links">
+          <a href="#story">브랜드</a><a href="#coffee">커피</a
+          ><a href="#origin">산지 이야기</a>
+        </div>
+        <small>© 2026 ONDO COFFEE. A DEMO BRAND WEBSITE.</small>
+      </div>
+    </footer>
+    <div class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
